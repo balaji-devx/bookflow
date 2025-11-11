@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Profile - BS2</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #f5f7fa;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 50px 20px;
+    }
+
+    .profile-container {
+      display: flex;
+      flex-wrap: wrap;
+      background: white;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      border-radius: 15px;
+      max-width: 800px;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    .profile-left {
+      background: #1a73e8;
+      color: white;
+      flex: 1;
+      text-align: center;
+      padding: 30px 20px;
+    }
+
+    .profile-left img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      margin-bottom: 15px;
+    }
+
+    .profile-left h2 {
+      margin: 10px 0;
+    }
+
+    .profile-right {
+      flex: 2;
+      padding: 30px;
+    }
+
+    .info-group {
+      margin-bottom: 20px;
+    }
+
+    .info-label {
+      font-weight: bold;
+      color: #333;
+    }
+
+    .info-value {
+      color: #555;
+      margin-top: 5px;
+    }
+
+    .profile-actions {
+      display: flex;
+      gap: 15px;
+    }
+
+    .btn {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .btn-primary {
+      background-color: #1a73e8;
+      color: white;
+    }
+
+    .btn-secondary {
+      background-color: #ddd;
+      color: #333;
+    }
+
+    .btn-primary:hover {
+      background-color: #0c5ec2;
+    }
+
+    .btn-secondary:hover {
+      background-color: #bbb;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="profile-container">
+    <div class="profile-left">
+      <img src="C:\Users\srira\Desktop\BS2\profle img samp.png" alt="User">
+      <h2 id="userName">User Name</h2>
+      <p>Book Enthusiast | Reader since 2023</p>
+      <button class="btn-secondary" onclick="logout()">Logout</button>
+    </div>
+
+    <div class="profile-right">
+      <h3>Profile Details</h3>
+      <div class="info-group">
+        <p class="info-label">Full Name</p>
+        <p class="info-value" id="profileName"></p>
+      </div>
+      <div class="info-group">
+        <p class="info-label">Email</p>
+        <p class="info-value" id="profileEmail"></p>
+      </div>
+      <div class="info-group">
+        <p class="info-label">Phone</p>
+        <p class="info-value">+91 98765 43210</p>
+      </div>
+      <div class="info-group">
+        <p class="info-label">Shipping Address</p>
+        <p class="info-value">45, Anna Nagar, Chennai - 600040</p>
+      </div>
+      <div class="profile-actions">
+        <button class="btn btn-primary">View Orders</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Get user info from localStorage
+    const name = localStorage.getItem("userName");
+    const email = localStorage.getItem("userEmail");
+
+    document.getElementById("userName").textContent = name || "Guest User";
+    document.getElementById("profileName").textContent = name || "Not Available";
+    document.getElementById("profileEmail").textContent = email || "Not Available";
+
+    function logout() {
+      localStorage.clear();
+      window.location.href = "login.html";
+    }
+  </script>
+</body>
+</html>
