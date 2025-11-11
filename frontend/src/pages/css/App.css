@@ -56,22 +56,22 @@
 
 .nav-item {
   text-decoration: none;
-  font-size: 1.4rem;
+  font-size: 1.7rem;
   color: #333;
 }
 
 .nav-signup {
   text-decoration: none;
   padding: 6px 16px;
-  background: #0d6efd;
+  background: #000000;
   border-radius: 20px;
   color: white;
-  font-size: 0.95rem;
+  font-size: 1.2rem;
   transition: 0.2s ease;
 }
 
 .nav-signup:hover {
-  background: #0b5ed7;
+  background: #6490d1;
 }
 
 
@@ -140,4 +140,57 @@
     grid-column-start: 9;
     grid-row-start: 15;
 }
-        
+
+
+ 
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 150px;
+}
+
+.logo{
+  font-size: 2rem;
+  margin: 10px;
+
+}
+h2{
+  margin: 10px;
+}
+
+.login-box {
+  background: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+  width: 350px;
+  text-align: center;
+}
+
+.login-box .input-group {
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+.login-box input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.login-box button {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  background-color: #000000;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.login-box button:hover {
+  background-color: #928e8e;
+  color: black;
+}
