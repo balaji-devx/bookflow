@@ -1049,11 +1049,17 @@ h2{
   align-items: center;
 }
 
-.action-top-primary { /* subtle tint for primary action */ }
+.primary-action .action-top {
+  background: rgba(22, 163, 74, 0.05);
+  border-radius: 8px;
+  padding: 4px 6px;
+}
+
 .primary-action {
   border-color: #16a34a;
   background: linear-gradient(180deg, rgba(22,163,74,0.04), rgba(22,163,74,0.02));
 }
+
 
 .action-icon {
   width: 44px;
