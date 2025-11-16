@@ -13,14 +13,14 @@ function FeaturedBooks() {
       id: 2,
       title: "1984",
       author: "George Orwell",
-      img: "https://images-na.ssl-images-amazon.com/images/I/71kxa1-0zfL.jpg",
+      img: "https://images-na.ssl-images-amazon.com/images/I/81af+MCATTL.jpg",
       price: "600.00",
     },
     {
       id: 3,
       title: "To Kill a Mockingbird",
       author: "Harper Lee",
-      img: "https://images-na.ssl-images-amazon.com/images/I/81OtwkiB7GL.jpg",
+      img: "https://images-na.ssl-images-amazon.com/images/I/71aFt4+OTOL.jpg",
       price: "890.00",
     },
     {

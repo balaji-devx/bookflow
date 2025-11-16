@@ -44,7 +44,7 @@
 }
 
 .nav-search:focus {
-  border-color: #0d6efd;
+  border-color: #2c6e49;
 }
 
 /* RIGHT: ICONS + BUTTON */
@@ -56,8 +56,12 @@
 
 .nav-item {
   text-decoration: none;
-  font-size: 1.7rem;
+  font-size: 1.4rem;
   color: #333;
+}
+
+.nav-item:hover{
+  text-decoration: underline;
 }
 
 .nav-signup {
@@ -71,7 +75,7 @@
 }
 
 .nav-signup:hover {
-  background: #6490d1;
+  background: #2c6e49;
 }
 
 
