@@ -8,19 +8,48 @@ function Signup() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
-  const registerUser = (e) => {
-    e.preventDefault();
+  const registerUser = async (e) => {
+  e.preventDefault();
 
-    if (password !== confirmPassword) {
-      alert("Passwords do not match!");
+  if (password !== confirmPassword) {
+    alert("Passwords do not match!");
+    return;
+  }
+
+  try {
+    const response = await fetch("http://localhost:5000/api/auth/register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name,
+        email,
+        password,
+      }),
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      // Backend validation errors
+      alert(data.message || "Registration failed");
       return;
     }
 
-    localStorage.setItem("userName", name);
-    localStorage.setItem("userEmail", email);
+    // Store token + user info
+    localStorage.setItem("token", data.token);
+    localStorage.setItem("userName", data.user.name);
+    localStorage.setItem("userEmail", data.user.email);
 
+    // Redirect to home
     window.location.href = "/";
-  };
+  } catch (error) {
+    console.error("Registration error:", error);
+    alert("Something went wrong. Try again!");
+  }
+};
+
 
   return (
     <>

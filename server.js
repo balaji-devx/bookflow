@@ -18,10 +18,10 @@ app.use("/api", authRoutes);
 // MongoDB Connection
 mongoose
   .connect(process.env.MONGO_URL)
-  .then(() => console.log("🔥 MongoDB Connected"))
+  .then(() => console.log(" MongoDB Connected"))
   .catch((err) => console.log("MongoDB Error:", err));
 
 // Start Server
 app.listen(5000, () => {
-  console.log("🚀 Server running on port 5000");
+  console.log(" Server running on port 5000");
 });
