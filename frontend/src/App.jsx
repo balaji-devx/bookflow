@@ -4,6 +4,7 @@ import Login from './pages/Login.jsx';
 import Profile from "./pages/Profile.jsx";
 import Cart from "./pages/Cart.jsx";
 import Shop from "./pages/Shop.jsx";
+import Signup from "./pages/Signup.jsx";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <Route path="/profile" element={<Profile />} />
       <Route path="/cart" element={<Cart />} />
       <Route path="/shop" element={<Shop />} />
+      <Route path="/signup" element={<Signup />} />
     </Routes>
   );
 }
