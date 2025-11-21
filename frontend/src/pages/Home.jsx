@@ -3,7 +3,7 @@ import Grid from '../components/Grid.jsx'
 import FeaturedBooks from '../components/FeaturedBooks.jsx'
 import Categories from '../components/Categories.jsx';
 import Testimonials from '../components/Testimonials.jsx';
-import Newsletter from '../components/NewsLetter.jsx';
+import Newsletter from '../components/Newsletter.jsx';
 import Footer from '../components/footer.jsx';
 
 function Home() {
