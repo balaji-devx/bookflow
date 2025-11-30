@@ -9,34 +9,29 @@
 }
 
 
-//* --- Global Variables --- */
-:root {
-    --primary-color: #000000; /* Pure Black */
-    --secondary-color: #333333; /* Dark Gray for text */
-    --light-background: #ffffff; /* Pure White */
-    --border-color: #cccccc;
-}
+/*
+ * Navigation Bar CSS (Explicit Properties - No :root variables)
+ * High-contrast, sticky, black-and-white aesthetic.
+ */
 
-/* 1. NAVBAR MAIN WRAPPER (Updated to ensure sticky effect looks solid) */
+/* 1. NAVBAR MAIN WRAPPER */
 .nav-container {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 10px 30px;
     
-    /* 🎯 FIX 1: Ensure background is fully opaque white */
-    background-color: #ffffff;
+    /* Sticky Fix: Ensure background is fully opaque white */
+    background-color: #ffffff; 
     
-    /* 🎯 FIX 2: Added a stronger shadow and Z-index for the "lifted" effect */
-    border-bottom: 1px solid var(--border-color); 
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15); /* More prominent shadow */
+    /* Sticky Fix: Added shadow and z-index for the "lifted" effect */
+    border-bottom: 1px solid #cccccc; 
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15); 
     
     position: sticky; 
     top: 0;
-    z-index: 1000; /* Ensures it stays above all other content */
+    z-index: 1000; 
 }
-
-/* --- Search Bar and Link Styles (UNCHANGED) --- */
 
 .logo-img {
     width: 130px;
@@ -45,7 +40,7 @@
     display: block;
 }
 
-/* 2. MIDDLE: SEARCH BAR (Debugged Flex) */
+/* 2. MIDDLE: SEARCH BAR */
 .nav-middle {
     max-width: 550px; 
     width: 100%;
@@ -56,15 +51,15 @@
 .nav-middle form {
     display: flex;
     width: 100%;
-    border: 1px solid var(--border-color); 
+    border: 1px solid #cccccc; /* Explicit border color */
     border-radius: 25px; 
     overflow: hidden; 
-    background-color: var(--light-background);
+    background-color: #ffffff; /* Explicit background color */
     transition: box-shadow 0.2s;
 }
 
 .nav-middle form:focus-within {
-    box-shadow: 0 0 0 2px var(--secondary-color); 
+    box-shadow: 0 0 0 2px #333333; /* Explicit dark gray ring on focus */
 }
 
 .nav-search {
@@ -78,7 +73,7 @@
 .nav-search-btn {
     padding: 8px 16px;
     border: none;
-    background-color: var(--secondary-color); 
+    background-color: #333333; /* Explicit secondary color */
     color: white;
     cursor: pointer;
     font-size: 1.1rem;
@@ -86,7 +81,7 @@
 }
 
 .nav-search-btn:hover {
-    background-color: var(--primary-color);
+    background-color: #000000; /* Explicit primary color (pure black) */
 }
 
 
@@ -100,23 +95,23 @@
 .nav-item {
     text-decoration: none;
     font-size: 1rem; 
-    color: var(--secondary-color);
+    color: #333333; /* Explicit secondary color */
     font-weight: 500;
     padding: 4px 8px;
     transition: color 0.2s;
 }
 
 .nav-item:hover {
-    color: var(--primary-color); 
+    color: #000000; /* Explicit primary color (pure black) */
     text-decoration: underline;
 }
 
-/* Signup / Logout Button Styling */
+/* Signup / Login/Logout Button Styling */
 .nav-signup, .nav-logout-btn {
     text-decoration: none;
     padding: 8px 18px; 
-    background: var(--primary-color); 
-    border: 1px solid var(--primary-color);
+    background: #000000; /* Explicit primary color */
+    border: 1px solid #000000;
     border-radius: 25px; 
     color: white;
     font-size: 1rem;
@@ -126,17 +121,23 @@
     white-space: nowrap;
 }
 
+/* Login/Signup Button Hover Style */
+.nav-signup:hover {
+    background: #333333; /* Dark gray hover background */
+    border-color: #333333;
+}
+
 /* Logout Button Specific Style (Inverted) */
 .nav-logout-btn {
-    background-color: var(--light-background); 
-    color: var(--secondary-color); 
-    border: 1px solid var(--secondary-color);
+    background-color: #ffffff; /* Explicit white background */
+    color: #333333; /* Explicit dark gray text */
+    border: 1px solid #333333;
 }
 
 .nav-logout-btn:hover {
-    background-color: var(--hover-bg); 
-    color: var(--primary-color);
-    border-color: var(--primary-color);
+    background-color: #f8f8f8; /* Explicit light gray hover bg */
+    color: #000000; /* Explicit black text */
+    border-color: #000000; /* Explicit black border */
 }
 
 
@@ -159,7 +160,6 @@
         font-size: 0.9rem;
     }
 }
-
 
 /* keep your grid, but give it a real height so fr rows work */
 .parent {
