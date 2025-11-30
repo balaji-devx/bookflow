@@ -5,6 +5,9 @@ import Profile from "./pages/Profile.jsx";
 import Cart from "./pages/Cart.jsx";
 import Shop from "./pages/Shop.jsx";
 import Signup from "./pages/Signup.jsx";
+import AdminDashboard from "./pages/AdminDashboard.jsx";
+import Checkout from "./pages/Checkout.jsx";
+import Borrow from "./pages/Borrow.jsx";
 
 function App() {
   return (
@@ -15,6 +18,9 @@ function App() {
       <Route path="/cart" element={<Cart />} />
       <Route path="/shop" element={<Shop />} />
       <Route path="/signup" element={<Signup />} />
+      <Route path="/admin" element={<AdminDashboard />} />
+      <Route path="/checkout" element={<Checkout />} />
+      <Route path="/borrow" element={<Borrow />} />
     </Routes>
   );
 }

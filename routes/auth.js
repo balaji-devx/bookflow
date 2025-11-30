@@ -2,7 +2,7 @@ import express from "express";
 import { body, validationResult } from "express-validator";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-import User from "../models/User.js"; // path based on earlier model
+import User from "../models/User.js";
 import dotenv from "dotenv";
 dotenv.config();
 
@@ -30,15 +30,23 @@ router.post(
       const salt = await bcrypt.genSalt(10);
       const hash = await bcrypt.hash(password, salt);
 
+      // will default to role: "user" from schema
       const user = await User.create({ name, email, password: hash });
 
-      // token
-      const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
-        expiresIn: process.env.JWT_EXPIRES_IN || "7d",
-      });
+      // token (now also includes role)
+      const token = jwt.sign(
+        { id: user._id, role: user.role },
+        process.env.JWT_SECRET,
+        { expiresIn: process.env.JWT_EXPIRES_IN || "7d" }
+      );
 
       // don't return password
-      const userObj = { id: user._id, name: user.name, email: user.email };
+      const userObj = {
+        id: user._id,
+        name: user.name,
+        email: user.email,
+        role: user.role,   // ✅ added
+      };
 
       res.status(201).json({ user: userObj, token });
     } catch (err) {
@@ -67,11 +75,19 @@ router.post(
       const match = await bcrypt.compare(password, user.password);
       if (!match) return res.status(401).json({ message: "Invalid credentials" });
 
-      const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
-        expiresIn: process.env.JWT_EXPIRES_IN || "7d",
-      });
+      // token includes role too
+      const token = jwt.sign(
+        { id: user._id, role: user.role },
+        process.env.JWT_SECRET,
+        { expiresIn: process.env.JWT_EXPIRES_IN || "7d" }
+      );
 
-      const userObj = { id: user._id, name: user.name, email: user.email };
+      const userObj = {
+        id: user._id,
+        name: user.name,
+        email: user.email,
+        role: user.role,   // ✅ added
+      };
 
       res.json({ user: userObj, token });
     } catch (err) {

@@ -31,6 +31,7 @@ function Login() {
       const data = await res.json();
 
       if (!res.ok) {
+        // ... (Error handling remains the same)
         const message =
           data?.message ||
           (Array.isArray(data?.errors) &&
@@ -42,17 +43,38 @@ function Login() {
         return;
       }
 
-      // Save token & user info
+      // --- 🎯 NEW & UPDATED LOGIC HERE ---
+      
+      // 1. Save token & basic user info
       localStorage.setItem("token", data.token);
+      
+      // NOTE: Your backend must send these fields in the response body.
       localStorage.setItem("userName", data.user.name);
       localStorage.setItem("userEmail", data.user.email);
+      
+      // 2. CRITICAL: Save the role and check it for redirection
+      const userRole = data.user.role; // 👈 Assuming backend sends { token: ..., user: { name: ..., role: ... } }
 
-      // Redirect to home
-      window.location.href = "/";
+      if (userRole) {
+        localStorage.setItem("userRole", userRole);
+      }
+      
+      // 3. Conditional Redirection
+      if (userRole === "admin") {
+        // Redirect Admin users to the dedicated admin page
+        window.location.href = "/admin"; 
+      } else {
+        // Redirect standard users to the home page
+        window.location.href = "/";
+      }
+      
+      // --- END OF NEW & UPDATED LOGIC ---
+      
     } catch (err) {
       console.error("Login error:", err);
       setError("Network error. Make sure backend is running.");
-      setLoading(false);
+    } finally {
+        setLoading(false);
     }
   };
 
