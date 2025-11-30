@@ -59,7 +59,7 @@ app.use(express.static(FRONTEND_BUILD_PATH));
 
 // 2. Catch-all: For any GET request that hasn't hit an /api route, 
 // serve the frontend's index.html file. This allows React Router to take over.
-app.get('*', (req, res) => {
+app.get('/*', (req, res) => {
     res.sendFile(path.resolve(FRONTEND_BUILD_PATH, 'index.html')); 
 });
 
