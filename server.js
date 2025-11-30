@@ -10,7 +10,8 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 // Assuming 'dist' is the build output folder inside a 'frontend' directory, 
 // which is two levels up from the backend server.js file.
-const FRONTEND_BUILD_PATH = path.join(__dirname, '..', '..', 'frontend', 'dist');
+const FRONTEND_BUILD_PATH = path.join(__dirname, '..', 'frontend', 'dist');
+
 
 
 // --- Import Route Modules ---
