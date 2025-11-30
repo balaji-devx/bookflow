@@ -55,24 +55,25 @@ app.use('/api/books', bookRoutes);
 app.use(express.static(FRONTEND_BUILD_PATH));
 
 
-// Catch-all: For any GET request that hasn't hit an /api route, 
-// serve the frontend's index.html file. This is the fix for the PathError,
-// allowing React Router to handle paths like /admin, /shop, etc.
-app.get('*', (req, res) => {
-    res.sendFile(path.resolve(FRONTEND_BUILD_PATH, 'index.html')); 
-});
+// 1. Serve static assets (JS, CSS, images) from the built frontend directory
+app.use(express.static(FRONTEND_BUILD_PATH));
 
+// 2. Catch-all: For any GET request that hasn't hit an /api route,
+// serve the frontend's index.html file. This allows React Router to take over.
+app.get(/.*/, (req, res) => {
+  res.sendFile(path.resolve(FRONTEND_BUILD_PATH, "index.html"));
+});
 
 // MongoDB Connection
 mongoose
-  .connect(process.env.MONGO_URL)
-  .then(() => console.log("🔥 MongoDB Connected"))
-  .catch((err) => {
-    console.error("MongoDB Error:", err);
-    process.exit(1); 
-});
+  .connect(process.env.MONGO_URL)
+  .then(() => console.log("🔥 MongoDB Connected"))
+  .catch((err) => {
+    console.error("MongoDB Error:", err);
+    process.exit(1);
+  });
 
 // Start Server
-app.listen(PORT, () => { 
-  console.log(`🚀 Server running on port ${PORT}`);
+app.listen(PORT, () => {
+  console.log(`🚀 Server running on port ${PORT}`);
 });
