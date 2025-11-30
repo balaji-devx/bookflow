@@ -9,7 +9,7 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 // Assuming your frontend build (dist) is two levels up from the backend root
-const FRONTEND_BUILD_PATH = path.join(__dirname, '..', '..', 'frontend', 'dist');
+const FRONTEND_BUILD_PATH = path.join(__dirname, "frontend", "dist");
 
 
 // --- Import Route Modules ---
