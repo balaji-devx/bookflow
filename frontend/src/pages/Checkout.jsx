@@ -5,6 +5,7 @@ import NavBar from "../components/Navbar";
 import Footer from "../components/footer";
 // Import your CSS file for the checkout layout
 import "../pages/css/App.css"; 
+import { API_BASE_URL } from '../utils/apiConfig';
 
 function Checkout() {
     const navigate = useNavigate(); 
@@ -85,14 +86,16 @@ function Checkout() {
             const token = localStorage.getItem('token');
             if (!token) throw new Error("User not authenticated. Please log in again.");
 
-            const response = await fetch('http://localhost:5000/api/transactions/order', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}` // Send JWT
-                },
-                body: JSON.stringify(orderPayload),
-            });
+            // Assuming you have imported the global constant: import { API_BASE_URL } from '../utils/apiConfig';
+
+const response = await fetch(`${API_BASE_URL}/transactions/order`, {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}` 
+    },
+    body: JSON.stringify(orderPayload),
+});
 
             const data = await response.json();
 

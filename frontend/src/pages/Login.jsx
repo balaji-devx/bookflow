@@ -1,7 +1,7 @@
 import { useState } from "react";
 import NavBar from "../components/Navbar.jsx";
 import "../pages/css/App.css";
-
+import { API_BASE_URL } from '../utils/apiConfig';
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -19,14 +19,20 @@ function Login() {
 
     setLoading(true);
 
-    try {
-      const res = await fetch("http://localhost:5000/api/auth/login", {
+    // Assuming you have imported the global constant: import { API_BASE_URL } from '../utils/apiConfig';
+
+try {
+    // 🎯 FIX: Use the global constant for the API base URL
+    const endpoint = `${API_BASE_URL}/auth/login`;
+
+    const res = await fetch(endpoint, {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
+            "Content-Type": "application/json",
         },
         body: JSON.stringify({ email, password }),
-      });
+    });
+    // ... (rest of the try block logic)
 
       const data = await res.json();
 

@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from "react"; // 🎯 Added useEffect
+import { useState, useEffect } from "react"; // 🎯 Added useEffect
 import { useLocation } from "react-router-dom"; // Used for reading search queries
 import "../pages/css/App.css"; 
 import NavBar from "../components/Navbar";
 import Footer from "../components/footer";
 import { useCart } from '../context/CartContext'; 
+import { API_BASE_URL } from '../utils/apiConfig';
 
 // --- Dedicated Component for the Toast Notification (for Add to Cart success) ---
 const Notification = ({ message, onClose }) => (
@@ -69,11 +70,11 @@ function Shop() {
             setError(null);
             
             // 1. Determine API URL: Correctly implements showing ALL books by default
-            let apiUrl = "http://localhost:5000/api/books"; // 👈 Default: Fetch all books
+            let apiUrl = `${API_BASE_URL}/books`; // 👈 Default: Fetch all books
 
             if (searchQuery) {
                 // If a search query exists, use the dedicated search endpoint
-                apiUrl = `http://localhost:5000/api/books/search?q=${searchQuery}`; 
+                apiUrl = `${API_BASE_URL}/books/search?q=${searchQuery}`; 
             }
 
             try {

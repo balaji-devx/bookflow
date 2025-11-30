@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import NavBar from "../components/Navbar";
 import Footer from "../components/footer";
 import "../pages/css/App.css"; // keep using your global file
+import { API_BASE_URL } from '../utils/apiConfig';
 
 // small inline SVG icons (no external lib required)
 const Icon = {
@@ -137,11 +138,17 @@ export default function Profile() {
 
         const fetchActivity = async () => {
             try {
-                // Fetch orders and borrows concurrently from the new backend routes
-                const [ordersRes, borrowsRes] = await Promise.all([
-                    fetch('http://localhost:5000/api/transactions/user/orders', { headers: { 'Authorization': `Bearer ${token}` } }),
-                    fetch('http://localhost:5000/api/transactions/user/borrows', { headers: { 'Authorization': `Bearer ${token}` } })
-                ]);
+    // 🎯 FIX: Use the global constant for the API base URL in both requests
+    const [ordersRes, borrowsRes] = await Promise.all([
+        fetch(`${API_BASE_URL}/transactions/user/orders`, { 
+            headers: { 'Authorization': `Bearer ${token}` } 
+        }),
+        fetch(`${API_BASE_URL}/transactions/user/borrows`, { 
+            headers: { 'Authorization': `Bearer ${token}` } 
+        })
+    ]);
+    
+    // ... (rest of the logic: handling 401/403, processing JSON responses, etc.) ...
 
                 // Check for session expiration/unauthorized access
                 if (ordersRes.status === 401 || ordersRes.status === 403) {

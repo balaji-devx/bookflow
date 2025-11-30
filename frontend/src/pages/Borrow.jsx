@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import NavBar from "../components/Navbar";
 import Footer from "../components/footer";
 import "../pages/css/App.css"; 
+import { API_BASE_URL } from '../utils/apiConfig';
 
 function Borrow() {
     const navigate = useNavigate();
@@ -83,14 +84,14 @@ function Borrow() {
             const token = localStorage.getItem('token');
             if (!token) throw new Error("User not authenticated. Please log in again.");
 
-            const response = await fetch('http://localhost:5000/api/transactions/borrow', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}` 
-                },
-                body: JSON.stringify(borrowPayload),
-            });
+            const response = await fetch(`${API_BASE_URL}/transactions/borrow`, {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}` 
+    },
+    body: JSON.stringify(borrowPayload),
+});
 
             const data = await response.json();
 

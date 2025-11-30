@@ -1,6 +1,7 @@
 import  { useEffect, useState, useCallback } from "react";
 import NavBar from "../components/Navbar.jsx";
 import "../pages/css/App.css"; // Global CSS file (where tab styles should go)
+import { API_BASE_URL } from '../utils/apiConfig';
 
 // --- Helper function to display placeholder info when user data is missing ---
 const getDisplayInfo = (user) => {
@@ -178,13 +179,22 @@ function AdminDashboard() {
         setError(null);
 
         try {
-            // 🎯 1. Fetch all required data concurrently
-            const [summaryRes, usersRes, ordersRes, borrowsRes] = await Promise.all([
-                fetch("http://localhost:5000/api/admin/summary", { headers: { Authorization: `Bearer ${token}` } }),
-                fetch("http://localhost:5000/api/admin/users", { headers: { Authorization: `Bearer ${token}` } }),
-                fetch("http://localhost:5000/api/transactions/admin/orders/pending", { headers: { Authorization: `Bearer ${token}` } }),
-                fetch("http://localhost:5000/api/transactions/admin/borrows/active", { headers: { Authorization: `Bearer ${token}` } }),
-            ]);
+    // 🎯 1. Fetch all required data concurrently using the global API_BASE_URL
+    const [summaryRes, usersRes, ordersRes, borrowsRes] = await Promise.all([
+        // 1. Admin Summary
+        fetch(`${API_BASE_URL}/admin/summary`, { headers: { Authorization: `Bearer ${token}` } }),
+        
+        // 2. Admin Users
+        fetch(`${API_BASE_URL}/admin/users`, { headers: { Authorization: `Bearer ${token}` } }),
+        
+        // 3. Pending Orders (Transaction Admin Route)
+        fetch(`${API_BASE_URL}/transactions/admin/orders/pending`, { headers: { Authorization: `Bearer ${token}` } }),
+        
+        // 4. Active Borrows (Transaction Admin Route)
+        fetch(`${API_BASE_URL}/transactions/admin/borrows/active`, { headers: { Authorization: `Bearer ${token}` } }),
+    ]);
+
+    // ... (rest of the logic: handling 401/403, processing JSON responses, etc., remains the same) ...
 
             if (summaryRes.status === 401 || summaryRes.status === 403) {
                 setError("Session expired or Admin access revoked. Redirecting...");
@@ -224,7 +234,7 @@ function AdminDashboard() {
     // --- 🎯 HANDLER FOR UPDATING ORDER STATUS (MARK SHIPPED) ---
     const handleUpdateOrder = async (orderId, actionType) => {
         setStatusToast('Updating order status...');
-        const endpoint = `http://localhost:5000/api/transactions/admin/orders/${orderId}/${actionType}`;
+       const endpoint = `${API_BASE_URL}/transactions/admin/orders/${orderId}/${actionType}`;
 
         try {
             const response = await fetch(endpoint, {
@@ -249,7 +259,7 @@ function AdminDashboard() {
     // --- 🎯 HANDLER FOR UPDATING BORROW STATUS (CONFIRM RETURNED) ---
     const handleUpdateBorrow = async (borrowId, actionType) => {
         setStatusToast('Updating borrow status...');
-        const endpoint = `http://localhost:5000/api/transactions/admin/borrows/${borrowId}/status`;
+        const endpoint = `${API_BASE_URL}/transactions/admin/borrows/${borrowId}/status`;
 
         try {
             const response = await fetch(endpoint, {
