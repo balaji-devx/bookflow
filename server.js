@@ -4,13 +4,12 @@ import cors from "cors";
 import dotenv from "dotenv";
 import path from "path";
 import { fileURLToPath } from 'url';
-// Use createRequire for compatibility if needed, but path/fileURLToPath is sufficient here
-// import { createRequire } from 'module'; 
 
 // --- Path Helpers for ES Modules ---
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-// Assuming your frontend build (dist) is two levels up from the backend root on Render
+// Assuming 'dist' is the build output folder inside a 'frontend' directory, 
+// which is two levels up from the backend server.js file.
 const FRONTEND_BUILD_PATH = path.join(__dirname, '..', '..', 'frontend', 'dist');
 
 
@@ -26,7 +25,6 @@ const app = express();
 
 // --- Dynamic PORT Configuration ---
 const PORT = process.env.PORT || 5000; 
-// IMPORTANT: Get the FRONTEND_URL from environment variables for CORS security
 const FRONTEND_URL = process.env.FRONTEND_URL || 'http://localhost:5173'; 
 
 
@@ -40,7 +38,7 @@ app.use(cors({
 
 
 // ----------------------------------------------------
-// --- API ROUTES (MUST COME BEFORE FALLBACK) ---
+// --- 1. API ROUTES (MUST COME BEFORE FALLBACK) ---
 // ----------------------------------------------------
 
 app.use("/api", authRoutes);
@@ -50,16 +48,17 @@ app.use('/api/books', bookRoutes);
 
 
 // ----------------------------------------------------
-// --- UNIVERSAL FALLBACK ROUTE FOR REACT FRONTEND ---
+// --- 2. UNIVERSAL FALLBACK ROUTE FOR REACT FRONTEND ---
 // ----------------------------------------------------
 
-// 1. Serve static assets (JS, CSS, images) from the built frontend directory
+// Serve static assets (JS, CSS, images)
 app.use(express.static(FRONTEND_BUILD_PATH));
 
 
-// 2. Catch-all: For any GET request that hasn't hit an /api route, 
-// serve the frontend's index.html file. This allows React Router to take over.
-app.get('/*', (req, res) => {
+// Catch-all: For any GET request that hasn't hit an /api route, 
+// serve the frontend's index.html file. This is the fix for the PathError,
+// allowing React Router to handle paths like /admin, /shop, etc.
+app.get('*', (req, res) => {
     res.sendFile(path.resolve(FRONTEND_BUILD_PATH, 'index.html')); 
 });
 
