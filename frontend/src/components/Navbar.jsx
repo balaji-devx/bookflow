@@ -83,7 +83,6 @@ function NavBar() {
                     ) : (
                         <>
                             <Link to="/login" className="nav-item">Login</Link>
-                            <Link to="/admin" className="nav-item">Board</Link>
                             <Link to="/signup" className="nav-signup">Sign Up</Link>
                         </>
                     )}
