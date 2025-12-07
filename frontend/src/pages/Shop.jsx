@@ -124,7 +124,7 @@ function Shop() {
 
             <div className="shop-page-wrapper">
                 <h1 className="shop-title">
-                    {searchQuery ? `Search Results for: "${searchQuery}"` : "The Book Hub: Explore & Buy"}
+                    {searchQuery ? `Search Results for: "${searchQuery}"` : "BookFlow: Explore & Buy"}
                 </h1>
                 
                 {loading && <div className="info-box">Loading book inventory...</div>}

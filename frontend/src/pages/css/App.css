@@ -2033,3 +2033,209 @@ h2{
 .btn-action:hover:not(:disabled) {
     background-color: #0056b3;
 }
+
+/*
+ * LEND & BORROW PAGE CSS (Explicit, High-Contrast Style)
+ * Note: Uses hardcoded hex codes (#000000, #333333, #ffffff) for stability.
+ */
+
+/* =======================================
+ * LEND PAGE (Book Submission Form) CSS
+ * ======================================= */
+
+.lend-page-wrapper {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.lend-form-container {
+    background: #ffffff; /* White background */
+    border: 1px solid #cccccc; /* Light border */
+    border-radius: 8px;
+    padding: 30px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.lend-title {
+    color: #000000; /* Pure Black */
+    margin-bottom: 5px;
+}
+
+.lend-subtitle {
+    color: #333333; /* Dark Gray text */
+    margin-bottom: 25px;
+    font-size: 1rem;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 15px;
+}
+
+.lend-form h2 {
+    color: #333333;
+    font-size: 1.3rem;
+    margin-top: 20px;
+    margin-bottom: 15px;
+    padding-bottom: 5px;
+    border-bottom: 1px dotted #cccccc;
+}
+
+/* --- Form Elements: Input, Textarea, Select --- */
+.lend-form .form-group {
+    margin-bottom: 15px;
+}
+
+.lend-form label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: #333333;
+    font-size: 0.95rem;
+}
+
+.lend-form input[type="text"],
+.lend-form input[type="number"],
+.lend-form input[type="url"],
+.lend-form input[type="email"],
+.lend-form textarea,
+.lend-form select {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #cccccc; 
+    border-radius: 4px;
+    font-size: 1rem;
+    box-sizing: border-box;
+    /* Static appearance: Removed explicit transition */
+}
+
+/* Input Hover/Focus Effects (Static Color Change) */
+.lend-form input:hover,
+.lend-form textarea:hover,
+.lend-form select:hover {
+    border-color: #333333; /* Darker border on hover */
+}
+
+.lend-form input:focus,
+.lend-form textarea:focus,
+.lend-form select:focus {
+    border-color: #000000; /* Solid black border on focus */
+    box-shadow: 0 0 0 1px #000000; /* Thin black outline for focus */
+    outline: none; 
+}
+
+.lend-form select {
+    appearance: none; 
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23333%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13%205.1L146.2%20227.4%2018.5%2074.5a17.6%2017.6%200%200%200-25.1%2024.5l135.8%20146.8a17.6%2017.6%200%200%200%2025.1%200l135.8-146.8c.8-1.5%201.2-3.1%201.2-4.8%200-1.7-.4-3.4-1.2-5.1z%22%2F%3E%3C%2Fsvg%3E');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 10px;
+    padding-right: 30px;
+}
+
+.lend-form textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+.lend-form .form-row-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 15px;
+}
+
+/* Submit Button (Solid Black) */
+.submit-lend-btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #000000; 
+    color: white;
+    border: 1px solid #000000;
+    border-radius: 4px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    /* Removed transition for static feel */
+    margin-top: 20px;
+}
+
+.submit-lend-btn:hover:not(:disabled) {
+    background-color: #333333; /* Darker gray on hover */
+    border-color: #333333; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+}
+
+.submit-lend-btn:disabled {
+    background-color: #cccccc;
+    border-color: #cccccc;
+    cursor: not-allowed;
+}
+
+
+/* =======================================
+ * BORROW PAGE (Summary Panel Styling)
+ * ======================================= */
+
+.summary-row span {
+    font-weight: 400; 
+    color: #333333;
+}
+
+.summary-row strong {
+    font-weight: 700;
+    color: #000000;
+}
+
+.summary-row .refundable-deposit {
+    color: #16a34a; /* Deep Green */
+    font-weight: bold;
+    font-size: 1.05rem;
+}
+
+.summary-row .rental-fee {
+    color: #cc3333; /* Dark Red */
+    font-weight: bold;
+}
+
+.total-row {
+    border-top: 2px solid #cccccc;
+    padding-top: 10px;
+}
+
+.grand-total-amount {
+    font-size: 1.3rem;
+    color: #000000;
+}
+
+/* Final Action Buttons (Borrow and Switch to Buy) */
+.borrow-final-btn {
+    background-color: #333333 !important; 
+    border-color: #333333 !important;
+    color: white;
+}
+
+.borrow-final-btn:hover {
+    background-color: #000000 !important;
+    border-color: #000000 !important;
+}
+
+.buy-final-btn {
+    background-color: #cccccc !important; 
+    color: #333333 !important;
+    border: 1px solid #cccccc !important;
+}
+
+.buy-final-btn:hover {
+    background-color: #f8f8f8 !important;
+}
+
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .lend-form-container {
+        padding: 20px;
+    }
+    .lend-form .form-row-2 {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+}

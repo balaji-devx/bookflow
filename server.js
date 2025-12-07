@@ -17,6 +17,7 @@ import authRoutes from "./routes/auth.js";
 import adminRoutes from "./routes/admin.js";  
 import transactionRoutes from "./routes/transactionRoutes.js"; 
 import bookRoutes from "./routes/bookRoutes.js";
+import lendRoutes from "./routes/lendRoutes.js";
 
 dotenv.config();
 
@@ -41,6 +42,8 @@ app.use("/api", authRoutes);
 app.use("/api", adminRoutes); 
 app.use('/api/transactions', transactionRoutes); 
 app.use('/api/books', bookRoutes);
+app.use('/api/lend',lendRoutes);
+app.use('/api/admin', adminRoutes);
 
 
 // ----------------------------------------------------
@@ -64,14 +67,14 @@ app.use((req, res, next) => {
 
 // MongoDB Connection
 mongoose
-  .connect(process.env.MONGO_URL)
-  .then(() => console.log("🔥 MongoDB Connected"))
-  .catch((err) => {
-    console.error("MongoDB Error:", err);
-    process.exit(1); 
+ .connect(process.env.MONGO_URL)
+ .then(() => console.log(" MongoDB Connected"))
+ .catch((err) => {
+ console.error("MongoDB Error:", err);
+ process.exit(1); 
 });
 
 // Start Server
 app.listen(PORT, () => { 
-  console.log(`🚀 Server running on port ${PORT}`);
+ console.log(` Server running on port ${PORT}`);
 });

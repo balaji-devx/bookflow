@@ -157,8 +157,8 @@ function Cart() {
 
     const EmptyCart = (
       <div className="empty-cart-state">
-        <h2>Your Cart is Empty! 🛒</h2>
-        <p>Time to add some high-quality reads to your collection, Mosster.</p>
+        <h2>Your Cart is Empty! </h2>
+        <p>Time to add some high quality reads to your collection!</p>
         <a href="/shop" className="continue-shopping-link">Continue Shopping</a>
       </div>
     );
@@ -168,7 +168,7 @@ function Cart() {
       <>
         <NavBar />
         <div className="cart-page-wrapper">
-          <h1 className="cart-title">Cart — Review & Finalize</h1>
+          <h1 className="cart-title">Cart  Review & Finalize</h1>
           
           <div className="cart-main-grid">
             {cartItems.length > 0 ? CartContent : EmptyCart}

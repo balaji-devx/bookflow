@@ -8,6 +8,7 @@ import Signup from "./pages/Signup.jsx";
 import AdminDashboard from "./pages/AdminDashboard.jsx";
 import Checkout from "./pages/Checkout.jsx";
 import Borrow from "./pages/Borrow.jsx";
+import Lend from "./pages/Lend.jsx";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
       <Route path="/admin" element={<AdminDashboard />} />
       <Route path="/checkout" element={<Checkout />} />
       <Route path="/borrow" element={<Borrow />} />
+      <Route path="/lend" element={<Lend />} />
     </Routes>
   );
 }
